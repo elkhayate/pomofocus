@@ -1,4 +1,4 @@
-import React, { useRef, useState, useMemo } from "react";
+import React, { useRef, useState, useMemo, useEffect } from "react";
 import Countdown, { zeroPad } from "react-countdown";
 import style from "./counter.module.css";
 
@@ -11,8 +11,10 @@ const renderer = ({ minutes, seconds }) => {
 };
 
 function Counter() {
-  const date = useMemo(()=> {return (Date.now() + 1200000)}, []);
   const [pause, setPause] = useState(true);
+  const [time, setTime] = useState(null);
+  const date = useMemo(()=> {return (Date.now() + 60000 * time)}, [time]);
+  
   const clockRef = useRef();
   const handleStart = () => {
     clockRef.current.start();
@@ -23,40 +25,50 @@ function Counter() {
   const Pause = () => {
     setPause(!pause);
   };
-
-  return (
-    <div className={style.counter}>
-      <div className={style.items}>
-        <div>Pomodoro</div>
-        <div>Short Break</div>
-        <div>Long Break</div>
-      </div>
+  const Timer = (value) => {
+      return (
       <h1 className={style.count}>
         <Countdown
-          date={date}
+          date={value}
           ref={clockRef}
           autoStart={false}
           renderer={renderer}
         />
       </h1>
+      );
+  };
+  const handlePomo = () => {clockRef.current.stop(); setTime(25); }
+  const handleShort = () => {clockRef.current.stop();  setTime(5);}
+  const handleLong = () => {clockRef.current.stop(); setTime(15);}
+  return (
+    <div className={style.counter}>
+      <div className={style.items}>
+        <div onClick={handlePomo}>Pomodoro</div>
+        <div onClick={handleShort}>Short Break</div>
+        <div onClick={handleLong}>Long Break</div>
+      </div>
+      {Timer(date)}
+      {
+      pause ?       
       <button
-        className={style.btn}
         onClick={() => {
           handleStart();
           Pause();
         }}
       >
         START
-      </button>
-      <button
+      </button> : 
+       <button
         className={style.btn}
         onClick={() => {
           handlePause();
           Pause();
         }}
       >
-        PAUSE
-      </button>
+        STOP
+      </button>}
+
+     
     </div>
   );
 }
