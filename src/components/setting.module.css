@@ -1,0 +1,80 @@
+.container {
+    width: 25%;
+    display: flexbox;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    position: absolute;
+    background-color: white;
+    z-index: 10;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-left: 37.5%;
+    margin-top: 5%;
+}
+
+.header {
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    margin: auto;
+}
+.time {
+    display: flexbox;
+    justify-content: space-around;
+    align-content: flex-start;
+    width: 95%;
+    margin: auto;
+}
+.items {
+    display: flex;
+    width: 100%;
+}
+.item {
+    width: 20%;
+    margin: 10px;
+}
+.item input {
+    border-radius: 4px;
+    background-color: rgb(239, 239, 239);
+    font-size: 16px;
+    padding: 10px;
+    box-shadow: none;
+    border: none;
+    color: rgb(85, 85, 85);
+    width: 100%;
+    box-sizing: border-box;
+}
+.remove {
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+}
+.remove img {
+    height: 100%;
+    width: 100%;
+}
+.btn {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: rgb(0 0 0 / 20%) 0px 2px 2px;
+    color: white;
+    opacity: 0.9;
+    font-size: 14px;
+    padding: 8px 12px;
+    background-color: rgb(34, 34, 34);
+    border: 2px solid rgb(34, 34, 34);
+    width: 25%;
+    margin: 5px;
+}
+.footer {
+    background-color: rgb(239, 239, 239);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
