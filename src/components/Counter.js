@@ -66,9 +66,9 @@ function Counter(props) {
   return (
     <div className={style.counter}>
       <div className={style.items}>
-        <div style={clickedBy == "pomo" ? Style : null} onClick={handlePomo}>Pomodoro</div>
-        <div style={clickedBy == "short" ? Style : null} onClick={handleShort}>Short Break</div>
-        <div style={clickedBy == "long" ? Style : null} onClick={handleLong}>Long Break</div>
+        <div style={clickedBy === "pomo" ? Style : null} onClick={handlePomo}>Pomodoro</div>
+        <div style={clickedBy=== "short" ? Style : null} onClick={handleShort}>Short Break</div>
+        <div style={clickedBy === "long" ? Style : null} onClick={handleLong}>Long Break</div>
       </div>
       {Timer(date)}
       {

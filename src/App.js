@@ -1,4 +1,4 @@
-import React,{useState,useMemo} from 'react';
+import React,{useState} from 'react';
 import Counter from "./components/Counter";
 import style from "./app.module.css";
 import Header from "./components/Header";
