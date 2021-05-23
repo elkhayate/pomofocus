@@ -62,4 +62,14 @@ button {
     .counter {
         width: 90%;
     }
-}
+    .count {
+        font-size: 100px;
+    }
+    .items {
+        align-items: center;
+    }
+    .items div {
+        width: 100%;
+        height: 100%;
+    }
+}   

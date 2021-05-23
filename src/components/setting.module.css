@@ -31,6 +31,8 @@
 .items {
     display: flex;
     width: 100%;
+    justify-content: center;
+    align-items: baseline;
 }
 .item {
     width: 20%;
@@ -88,6 +90,8 @@
     .item {
         width: 100%;
         margin: 5px;
-        margin-bottom: 15px;
+    }
+    .item h4 {
+        font-size: 15px;
     }
 }

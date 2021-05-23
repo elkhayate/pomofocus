@@ -68,11 +68,11 @@ function Header(props) {
                     <input value={times.one} type="number" name ="one" onChange={handleChange}/>
                 </div>
                 <div className={styles.item}>
-                    <h4>Short Break</h4>
+                    <h4>Short</h4>
                     <input value={times.three} type="number" name ="three" onChange={handleChange}/>
                 </div>
                 <div className={styles.item}>
-                    <h4>Long Break</h4>
+                    <h4>Long</h4>
                     <input value={times.two} type="number" name ="two" onChange={handleChange} />
                 </div>
                 </div>
