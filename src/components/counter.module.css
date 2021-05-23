@@ -57,3 +57,9 @@ button {
     box-shadow: none;
     transition: color 0.5s ease-in-out 0s
 }
+
+@media (max-width : 1100px) {
+    .counter {
+        width: 90%;
+    }
+}
