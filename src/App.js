@@ -8,14 +8,26 @@ function App() {
   const [data ,setData] = useState({
     one : 25  , two :  15  , three : 5
   })
-  const Data = useMemo(() => {return(data)},[data])
+  const [back, setBack] = useState("pomo")
+  
+  const handle = (data) => {
+    setBack(data)
+  }
   const handleCallBack = (data) => {
     setData(data)
   }
+  var Style = null;
+  if(back === "pomo") {
+    Style = {backgroundColor : "#db524d"};
+  }else if (back === "short") {
+    Style = {backgroundColor : "#468e91"}
+  }else if (back === "long") {
+    Style = {backgroundColor : "#437ea8"}
+  }
   return ( 
-    <div className={style.app}>
+    <div style={Style} className={style.app}>
       <Header parentCallBack = {handleCallBack} />
-      <Counter set = {data}/>
+      <Counter set = {data} call = {handle}/>
     </div>
   )
 }

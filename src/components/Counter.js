@@ -16,7 +16,7 @@ function Counter(props) {
   const [which, setWhich] = useState({
     one : 25  , two : 15  , three :  5
   })
- 
+  const [clickedBy , setClickedBy] = useState("pomo")
   const clockRef = useRef();
   const handleStart = () => {
     clockRef.current.start();
@@ -39,9 +39,9 @@ function Counter(props) {
       </h1>
       );
   };
-  const handlePomo = () => {clockRef.current.stop(); setTime(which.one); setPause(true) }
-  const handleShort = () => {clockRef.current.stop();  setTime(which.three); setPause(true)}
-  const handleLong = () => {clockRef.current.stop(); setTime(which.two); setPause(true)}
+  const handlePomo = () => {setClickedBy("pomo"); clockRef.current.stop(); setTime(which.one); setPause(true) }
+  const handleShort = () => {setClickedBy("short"); clockRef.current.stop();  setTime(which.three); setPause(true)}
+  const handleLong = () => {setClickedBy("long"); clockRef.current.stop(); setTime(which.two); setPause(true)}
   if(props.set.one !== which.one) {
     setWhich({...which,one : props.set.one})
     setTime(props.set.one);
@@ -52,19 +52,29 @@ function Counter(props) {
     setWhich({...which,three : props.set.three})
     setTime(props.set.three);
   }
-  
+  props.call(clickedBy)
   const date = useMemo(()=> {return (Date.now() + 60000 * time)}, [time]);
+  const Style = {backgroundColor : "rgba(0, 0, 0, 0.15)"};
+  var Stylee = null;
+  if(clickedBy === "pomo") {
+    Stylee = {color : "#db524d"};
+  }else if (clickedBy === "short") {
+    Stylee = {color : "#468e91"}
+  }else if (clickedBy === "long") {
+    Stylee = {color : "#437ea8"}
+  }
   return (
     <div className={style.counter}>
       <div className={style.items}>
-        <div onClick={handlePomo}>Pomodoro</div>
-        <div onClick={handleShort}>Short Break</div>
-        <div onClick={handleLong}>Long Break</div>
+        <div style={clickedBy == "pomo" ? Style : null} onClick={handlePomo}>Pomodoro</div>
+        <div style={clickedBy == "short" ? Style : null} onClick={handleShort}>Short Break</div>
+        <div style={clickedBy == "long" ? Style : null} onClick={handleLong}>Long Break</div>
       </div>
       {Timer(date)}
       {
       pause ?       
       <button
+        style={Stylee}
         onClick={() => {
           handleStart();
           Pause();
@@ -73,6 +83,7 @@ function Counter(props) {
         START
       </button> : 
        <button
+       style={Stylee}
         className={style.btn}
         onClick={() => {
           handlePause();
