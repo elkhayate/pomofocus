@@ -2,12 +2,20 @@ import React, { useRef, useState, useMemo} from "react";
 import Countdown, { zeroPad } from "react-countdown";
 import style from "./counter.module.css";
 
-const renderer = ({ minutes, seconds }) => {
-  return (
+const refreshPage = ()=>{
+  alert("Time finished")
+  window.location.reload();
+}
+const renderer = ({ minutes, seconds, completed }) => {
+  if(completed) {
+    return  refreshPage();
+  
+  }else {return (
     <span>
       {zeroPad(minutes)}:{zeroPad(seconds)}
     </span>
-  );
+  );}
+  
 };
 
 function Counter(props) {
@@ -60,10 +68,20 @@ function Counter(props) {
     Stylee = {color : "#db524d"};
   }else if (clickedBy === "short") {
     Stylee = {color : "#468e91"}
-  }else if (clickedBy === "long") {
+  }else{
     Stylee = {color : "#437ea8"}
   }
+  const footer = () => {
+    if(clickedBy === "pomo") {
+      return "Time to Work !"
+    }else if (clickedBy === "short") {
+      return "Time for a Break"
+    } else{
+      return "Time for a Long Break"
+    }
+  }
   return (
+    <>
     <div className={style.counter}>
       <div className={style.items}>
         <div style={clickedBy === "pomo" ? Style : null} onClick={handlePomo}>Pomodoro</div>
@@ -95,6 +113,8 @@ function Counter(props) {
 
      
     </div>
+    <div className={style.footer}>{footer()}</div>
+    </>
   );
 }
 
