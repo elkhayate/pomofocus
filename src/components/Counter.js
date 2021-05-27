@@ -52,13 +52,13 @@ function Counter(props) {
   const handleLong = () => {setClickedBy("long"); clockRef.current.stop(); setTime(which.two); setPause(true)}
   if(props.set.one !== which.one) {
     setWhich({...which,one : props.set.one})
-    setTime(props.set.one);
+    {clickedBy === "pomo" && setTime(props.set.one)}
   }else if(props.set.two !== which.two){
     setWhich({...which,two : props.set.two})
-    setTime(props.set.two);
+    {clickedBy === "short" && setTime(props.set.two)}
   }else if (props.set.three !== which.three){
     setWhich({...which,three : props.set.three})
-    setTime(props.set.three);
+    {clickedBy === "long" && setTime(props.set.three)}
   }
   props.call(clickedBy)
   const date = useMemo(()=> {return (Date.now() + 60000 * time)}, [time]);
